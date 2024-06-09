@@ -180,24 +180,59 @@
             }
         </script>
     </div>
-    <div class="w-2/3 hidden md:flex flex-col gap-3 justify-center items-center p-10">
-        <div class="w-2/3">
-            <h1 class="text-4xl font-extrabold text-amber-500">Terminos y Condiciones de uso.</h1>
-            <p class="text-white text-lg"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada arcu sit amet bibendum sodales. Morbi pretium lacus ac eros porttitor, eget luctus risus
-                laoreet. Donec purus dolor, cursus non tellus vel, fringilla iaculis enim. Mauris quis vestibulum nulla.
-                Nulla sodales pharetra rutrum. Cras volutpat lectus ac velit cursus, egestas cursus dui aliquam. In
-                consectetur, ligula id accumsan viverra, tortor enim elementum quam, laoreet varius leo tortor eget
-                tellus. Aliquam non ex lorem.
-                Nam ut molestie sapien, tempus tempus nulla. Nunc ultricies vel turpis a elementum. Vestibulum eros
-                nunc, pulvinar eu purus in, tincidunt commodo ligula. Maecenas et mauris id nibh tempor congue non at
-                augue. Ut porttitor ipsum nec massa molestie, cursus sollicitudin dolor accumsan. Etiam efficitur,
-                ligula a gravida commodo, enim nisl molestie sem, porta posuere elit erat ut urna. Aliquam consequat leo
-                vitae enim egestas, vel lobortis odio convallis. Sed nulla purus, semper non gravida nec, blandit in
-                magna. Aliquam felis orci, cursus ac arcu at, accumsan mattis quam. Aenean aliquam consectetur velit
-                tristique venenatis.
-            </p>
+    <div class="w-2/3 hidden md:flex flex-col gap-3 justify-start items-center p-10 overflow-y-auto">
+        <div class="max-w-3xl mx-auto px-4 py-8 text-white">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-amber-400">Política de Uso</h2>
+                <p class="mb-2">Bienvenido a Profedex, nuestra plataforma digital interactiva diseñada para facilitar la recopilación y compartición de reseñas, consejos y experiencias sobre los profesores del departamento de Sistemas Computacionales del Tecnológico de Motul. Para asegurar una experiencia positiva y respetuosa para todos los usuarios, se deben seguir las siguientes políticas:</p>
+                <ol class="list-decimal pl-6">
+                    <li class="mb-4">
+                        <strong>Respeto y Cordialidad:</strong>
+                        <p class="ml-4">Los comentarios y reseñas deben ser constructivos y respetuosos. No se tolerará ningún tipo de acoso, insultos o comentarios despectivos hacia los profesores o estudiantes.</p>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Veracidad de la Información:</strong>
+                        <p class="ml-4">Se espera que los usuarios proporcionen información veraz y precisa en sus reseñas. Las opiniones deben basarse en experiencias personales y deben evitarse las afirmaciones infundadas.</p>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Privacidad y Anonimato:</strong>
+                        <p class="ml-4">Para proteger la identidad de los usuarios, todas las reseñas y comentarios se pueden publicar de manera anónima. Los datos personales de los usuarios estarán protegidos según nuestras políticas de privacidad.</p>
+                    </li>
+                    <li>
+                        <strong>Moderación de Contenidos:</strong>
+                        <p class="ml-4">Profedex se reserva el derecho de revisar y moderar los contenidos publicados. Cualquier contenido que viole estas políticas puede ser editado o eliminado sin previo aviso.</p>
+                    </li>
+                </ol>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold mb-4 text-amber-400">Términos y Condiciones</h2>
+                <p class="mb-4">Al usar Profedex, aceptas cumplir con los siguientes términos y condiciones:</p>
+                <ol class="list-decimal pl-6">
+                    <li class="mb-4">
+                        <strong>Propósito de la Plataforma:</strong>
+                        <p class="ml-4">Profedex está destinada a proporcionar un espacio donde los estudiantes puedan compartir sus experiencias y opiniones sobre los profesores del departamento de Sistemas Computacionales del Tecnológico de Motul. El objetivo es ayudar a los estudiantes a tomar decisiones informadas sobre sus cursos y profesores.</p>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Uso Adecuado del Servicio:</strong>
+                        <p class="ml-4">Los usuarios deben utilizar Profedex de manera responsable y conforme a su propósito. El uso indebido, incluyendo la publicación de contenido falso o malintencionado, está prohibido.</p>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Protección de Datos:</strong>
+                        <p class="ml-4">Nos comprometemos a proteger la privacidad de nuestros usuarios. Los datos recopilados serán utilizados únicamente para mejorar la experiencia del usuario en la plataforma y no serán compartidos con terceros sin consentimiento explícito.</p>
+                    </li>
+                    <li class="mb-4">
+                        <strong>Responsabilidad del Contenido:</strong>
+                        <p class="ml-4">Los usuarios son responsables del contenido que publican. Profedex no se hace responsable de la veracidad o exactitud de las reseñas y comentarios publicados por los usuarios.</p>
+                    </li>
+                    <li>
+                        <strong>Revisión y Modificación de Términos:</strong>
+                        <p class="ml-4">Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Los usuarios serán notificados de cualquier cambio significativo y deberán aceptar los términos actualizados para continuar utilizando la plataforma.</p>
+                    </li>
+                </ol>
+            </div>
+            <p class="mt-8">La Profedex tiene como objetivo principal proporcionar a los estudiantes una herramienta efectiva y segura para evaluar la calidad de la enseñanza y obtener consejos útiles. Al adherirse a estas políticas, términos y condiciones, garantizamos una experiencia positiva y constructiva para todos los usuarios. Si tienes alguna pregunta o inquietud, no dudes en contactarnos a través de los canales de soporte de la plataforma.</p>
         </div>
+        
     </div>
 
     @if ($openOverlay)

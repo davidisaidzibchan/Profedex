@@ -60,7 +60,6 @@
                             <img id="btnClic" src="{{ asset(json_decode($profesor->imagen)[0]) }}"
                                 alt="{{ asset(json_decode($profesor->imagen)[0]) }}"
                                 class="w-full h-full object-cover bg-no-repeat object-top">
-                            <div class="absolute inset-0 bg-black opacity-40"></div>
                             <div class="absolute inset-0 flex flex-col justify-between">
                                 <div class="absolute top-1/2 -left-3 flex flex-col justify-center items-center w-16">
                                     <svg wire:click="toggleFlip({{ $index }})" xmlns="http://www.w3.org/2000/svg"
@@ -80,11 +79,6 @@
                                     </svg>
                                     <span class="text-sm text-white"
                                         wire:poll>{{ \App\Models\Profesor::where('id', $profesor->id)->first()->like }}</span>
-                                </div>
-                                <div class="absolute bottom-0 w-full text-white uppercase  text-lg text-center">
-                                    <div>
-                                        {{ $profesor->nombre }}
-                                    </div>
                                 </div>
                             </div>
                         </div>
