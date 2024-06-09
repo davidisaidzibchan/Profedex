@@ -26,19 +26,19 @@ class GestionProfes extends Component
 
     public $tipos = ['Común', 'Poco Común', 'Raro', 'Muy Raro', 'Legendario'];
     public $tiposSeleccionados = [];
-    public $paciencia = 0, $inteligencia = 0, $carisma = 0, $tolerancia = 0;
+    public $paciencia = 0, $amabilidad = 0, $comprension = 0, $exigencia = 0;
     public function toggleTipo($tipo)
     {
-        
+
         if (in_array($tipo, $this->tiposSeleccionados)) {
-            
+
             $this->tiposSeleccionados = array_diff($this->tiposSeleccionados, [$tipo]);
         } else {
-            
+
             $this->tiposSeleccionados[] = $tipo;
         }
 
-        
+
         if (empty($this->tiposSeleccionados)) {
             $this->tiposSeleccionados[] = $tipo;
         }
@@ -47,24 +47,24 @@ class GestionProfes extends Component
 
     public function toggleSemestre($semestre)
     {
-        
+
         $semestresArray = $this->semestres ? explode(',', $this->semestres) : [];
 
-        
+
         if (in_array($semestre, $semestresArray)) {
-            
+
             $semestresArray = array_diff($semestresArray, [$semestre]);
         } else {
-            
+
             $semestresArray[] = $semestre;
         }
 
-        
+
         if (empty($semestresArray)) {
             $semestresArray[] = $semestre;
         }
 
-        
+
         $this->semestres = implode(',', $semestresArray);
     }
 
@@ -81,9 +81,9 @@ class GestionProfes extends Component
             $this->dificultad = $profesor->dificultad;
             $this->peligro = $profesor->peligro;
             $this->paciencia = $profesor->atributos['Paciencia'] ?? 0;
-            $this->inteligencia = $profesor->atributos['Inteligencia'] ?? 0;
-            $this->carisma = $profesor->atributos['Carisma'] ?? 0;
-            $this->tolerancia = $profesor->atributos['tolerancia'] ?? 0;
+            $this->amabilidad = $profesor->atributos['amabilidad'] ?? 0;
+            $this->comprension = $profesor->atributos['comprension'] ?? 0;
+            $this->exigencia = $profesor->atributos['exigencia'] ?? 0;
             $this->curiosidades = $profesor->curiosidades;
             $this->horario = $profesor->horario;
             $this->categoria = $profesor->categoria;
@@ -134,9 +134,9 @@ class GestionProfes extends Component
         $this->dificultad = '';
         $this->peligro = '';
         $this->paciencia = 0;
-        $this->inteligencia = 0;
-        $this->carisma = 0;
-        $this->tolerancia = 0;
+        $this->amabilidad = 0;
+        $this->comprension = 0;
+        $this->exigencia = 0;
         $this->curiosidades = '';
         $this->horario = '';
         $this->categoria = '';
@@ -214,9 +214,9 @@ class GestionProfes extends Component
 
         $atributos = [
             'Paciencia' => $this->paciencia,
-            'Inteligencia' => $this->inteligencia,
-            'Carisma' => $this->carisma,
-            'tolerancia' => $this->tolerancia,
+            'amabilidad' => $this->amabilidad,
+            'comprension' => $this->comprension,
+            'exigencia' => $this->exigencia,
         ];
         $this->habilidadesArray = array_slice(array_filter($this->habilidadesArray), 0, 6);
         $this->tiposSeleccionados = array_filter($this->tiposSeleccionados);
@@ -224,7 +224,7 @@ class GestionProfes extends Component
         $this->clases['clases_frecuentes'] = array_values(array_filter($this->clases['clases_frecuentes']));
         $this->clases['clases_ocasionales'] = array_values(array_filter($this->clases['clases_ocasionales']));
 
-        
+
         $imagen1Path = $this->imagen1 instanceof \Illuminate\Http\UploadedFile ? 'storage/' . $this->imagen1->storeAs('profesores', $this->imagen1->getClientOriginalName()) : $this->imagen1;
         $imagen2Path = $this->imagen2 instanceof \Illuminate\Http\UploadedFile ? 'storage/' . $this->imagen2->storeAs('stands', $this->imagen2->getClientOriginalName()) : $this->imagen2;
         $temaPath = $this->tema instanceof \Illuminate\Http\UploadedFile ? 'storage/' . $this->tema->storeAs('temas', $this->tema->getClientOriginalName()) : $this->tema;
@@ -298,9 +298,9 @@ class GestionProfes extends Component
         $this->dificultad = $profesor->dificultad;
         $this->peligro = $profesor->peligro;
         $this->paciencia = $profesor->atributos['Paciencia'] ?? 0;
-        $this->inteligencia = $profesor->atributos['Inteligencia'] ?? 0;
-        $this->carisma = $profesor->atributos['Carisma'] ?? 0;
-        $this->tolerancia = $profesor->atributos['tolerancia'] ?? 0;
+        $this->amabilidad = $profesor->atributos['amabilidad'] ?? 0;
+        $this->comprension = $profesor->atributos['comprension'] ?? 0;
+        $this->exigencia = $profesor->atributos['exigencia'] ?? 0;
         $this->curiosidades = $profesor->curiosidades;
         $this->horario = $profesor->horario;
         $this->categoria = $profesor->categoria;

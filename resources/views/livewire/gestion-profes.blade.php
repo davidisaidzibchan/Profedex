@@ -145,31 +145,24 @@
                                         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                                             <div>
                                                 <label for="paciencia" class="block">Paciencia:</label>
-                                                <input type="range" id="paciencia" wire:model="paciencia"
-                                                    min="0" max="100" class="w-full"
-                                                    wire:change="$refresh">
-                                                <span class="text-gray-600">{{ $paciencia }}%</span>
+                                                <input type="range" id="paciencia" wire:model="paciencia" min="0" max="100" class="w-full" oninput="document.getElementById('pacienciaValue').textContent = this.value;">
+                                                <output for="paciencia" id="pacienciaValue" class="text-gray-600">{{ $paciencia }}</output>%
                                             </div>
                                             <div>
-                                                <label for="inteligencia" class="block">Inteligencia:</label>
-                                                <input type="range" id="inteligencia" wire:model="inteligencia"
-                                                    min="0" max="100" class="w-full"
-                                                    wire:change="$refresh">
-                                                <span class="text-gray-600">{{ $inteligencia }}%</span>
-                                            </div>
+                                                <label for="amabilidad" class="block">Amabilidad:</label>
+                                                <input type="range" id="amabilidad" wire:model="amabilidad" min="0" max="100" class="w-full" oninput="document.getElementById('amabilidadValue').textContent = this.value;">
+                                                <output for="amabilidad" id="amabilidadValue" class="text-gray-600">{{ $amabilidad }}</output>%
+                                            </div>     
                                             <div>
-                                                <label for="carisma" class="block">Carisma:</label>
-                                                <input type="range" id="carisma" wire:model="carisma"
-                                                    min="0" max="100" class="w-full"
-                                                    wire:change="$refresh">
-                                                <span class="text-gray-600">{{ $carisma }}%</span>
-                                            </div>
+                                                <label for="comprension" class="block">Comprensión:</label>
+                                                <input type="range" id="comprension" wire:model="comprension" min="0" max="100" class="w-full" 
+                                                    oninput="document.getElementById('comprensionValue').textContent = this.value;">
+                                                <output for="comprension" id="comprensionValue" class="text-gray-600">{{ $comprension }}</output>%
+                                            </div>            
                                             <div>
-                                                <label for="tolerancia" class="block">Tolerancia:</label>
-                                                <input type="range" id="tolerancia" wire:model="tolerancia"
-                                                    min="0" max="100" class="w-full"
-                                                    wire:change="$refresh">
-                                                <span class="text-gray-600">{{ $tolerancia }}%</span>
+                                                <label for="exigencia" class="block">Exigencia:</label>
+                                                <input type="range" id="exigencia" wire:model="exigencia" min="0" max="100" class="w-full" oninput="document.getElementById('exigenciaValue').textContent = this.value;">
+                                                <output for="exigencia" id="exigenciaValue" class="text-gray-600">{{ $exigencia }}</output>%
                                             </div>
                                         </div>
                                     </div>
@@ -240,7 +233,8 @@
                                     </div>
                                     <div class="mb-4">
                                         <label for="semestres" class="block text-gray-700">Semestres:</label>
-                                        <div class="flex justify-center gap-3 flex-wrap items-center space-x-2" id="semestres-container">
+                                        <div class="flex justify-center gap-3 flex-wrap items-center space-x-2"
+                                            id="semestres-container">
                                             @for ($i = 1; $i <= 9; $i++)
                                                 <div>
                                                     <input type="checkbox" id="semestre{{ $i }}"
@@ -373,7 +367,8 @@
 
                                     <div class="mb-8">
                                         <label for="tipos" class="block text-gray-700">Tipos:</label>
-                                        <div class="flex flex-wrap gap-3 justify-center items-center space-x-2" id="tipos-container">
+                                        <div class="flex flex-wrap gap-3 justify-center items-center space-x-2"
+                                            id="tipos-container">
                                             @foreach ($tipos as $tipo)
                                                 <div>
                                                     <input type="checkbox" id="tipo_{{ $tipo }}"
@@ -536,7 +531,7 @@
                                             Reproducir
                                         </button>
                                     </div>
-                                </td> 
+                                </td>
                                 <td class="border px-4 py-2 text-center">
                                     <div class="flex flex-wrap justify-center gap-2 rounded-lg w-36">
                                         @foreach (explode(',', $profesor->tipo) as $tipo)
