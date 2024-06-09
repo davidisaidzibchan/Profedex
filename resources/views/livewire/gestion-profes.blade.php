@@ -507,13 +507,13 @@
                                     @endforeach
                                 </td>
                                 <td class="border px-4 py-2 text-center">
-                                    <div class="w-28 h-32">
+                                    <div class="w-28 h-auto">
                                         <img src="{{ asset(json_decode($profesor->imagen, true)[0]) }}"
                                             alt="Imagen1" class="w-full h-full object-cover">
                                     </div>
                                 </td>
                                 <td class="border text-center">
-                                    <div class="w-28 h-32">
+                                    <div class="w-28 h-auto">
                                         <img src="{{ asset(json_decode($profesor->imagen, true)[1]) }}"
                                             alt="Imagen 2" class="w-full h-full object-cover">
                                     </div>

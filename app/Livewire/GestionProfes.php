@@ -198,18 +198,6 @@ class GestionProfes extends Component
                     $fail('Al menos una clase frecuente es requerida.');
                 }
             },
-            'clases.clases_ocasionales' => function ($attribute, $value, $fail) {
-                $notEmpty = false;
-                foreach ($value as $clase) {
-                    if (!empty($clase)) {
-                        $notEmpty = true;
-                        break;
-                    }
-                }
-                if (!$notEmpty) {
-                    $fail('Al menos una clase ocasional es requerida.');
-                }
-            },
         ]);
 
         $atributos = [
