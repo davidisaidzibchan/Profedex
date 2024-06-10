@@ -2,38 +2,38 @@
     <div class="w-full md:w-4/6 flex flex-col items-center py-2">
         <div class="p-5 w-full bg-amber-500 border-4 flex flex-col items-center gap-4">
             <h1 class="text-lg  uppercase text-center">{{ $profesor->nombre }}</h1>
-            <div class="flex h-80 w-60 flex-col items-center justify-center">
-                <div id="flip-card-inner-{{ $profesor->id }}" class="flip-card w-60 h-72 [perspective:1000px]">
-                    <div
-                        class="flip-card-inner relative w-full h-full transition-all duration-500 [transform-style:preserve-3d]">
-                        <div
-                            class="flip-card-front cursor-pointer inset-0 border-4 rounded-xl overflow-hidden bg-black absolute w-full h-full [backface-visibility:hidden]">
-                            <img id="btnClic" src="{{ asset(json_decode($profesor->imagen)[0]) }}"
-                                alt="{{ asset(json_decode($profesor->imagen)[0]) }}"
-                                class="w-full h-full object-cover bg-no-repeat object-top">
-                            <div class="absolute top-1/2 -left-3 flex flex-col justify-center items-center w-16">
-                                <svg onclick="toggleFlip()" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="w-8 h-8 stroke-white bg-sky-500 rounded-full p-1 cursor-pointer">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div
-                            class="flip-card-back cursor-pointer flex inset-0 rounded-xl overflow-hidden border-4 bg-rose-800overflow-hidden text-white absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                            <img id="otroClic" src="{{ asset(json_decode($profesor->imagen)[1]) }}"
-                                alt="{{ asset(json_decode($profesor->imagen)[1]) }}"
-                                class="w-full h-full object-cover bg-no-repeat object-top">
 
-                            <div class="absolute top-1/2 -right-3 flex flex-col justify-center items-center w-16">
-                                <svg onclick="toggleFlip()" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                    class="w-8 h-8 stroke-white bg-sky-500 rounded-full p-1 cursor-pointer">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                                </svg>
-                            </div>
+
+            <div id="flip-card-inner-{{ $profesor->id }}" class="flip-card w-60 [perspective:1000px]">
+                <div
+                    class="flip-card-inner cursor-pointer relative w-full transition-all duration-500 [transform-style:preserve-3d]">
+                    <div
+                        class="flip-card-front border-4 overflow-hidden bg-black relative w-full [backface-visibility:hidden]">
+                        <img id="btnClic" src="{{ asset(json_decode($profesor->imagen)[0]) }}"
+                            alt="{{ asset(json_decode($profesor->imagen)[0]) }}"
+                            class="w-full h-auto object-cover bg-no-repeat object-top">
+                        <div class="absolute top-1/2 -left-3 flex flex-col justify-center items-center w-16">
+                            <svg onclick="toggleFlip()" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-8 h-8 stroke-white bg-sky-500 rounded-full p-1 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        class="flip-card-back cursor-pointer flex inset-0 rounded-xl overflow-hidden border-4 bg-rose-800overflow-hidden text-white absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                        <img id="otroClic" src="{{ asset(json_decode($profesor->imagen)[1]) }}"
+                            alt="{{ asset(json_decode($profesor->imagen)[1]) }}"
+                            class="w-full h-full object-cover bg-no-repeat object-top">
+
+                        <div class="absolute top-1/2 -right-3 flex flex-col justify-center items-center w-16">
+                            <svg onclick="toggleFlip()" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-8 h-8 stroke-white bg-sky-500 rounded-full p-1 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,6 @@
                 var flash = document.getElementById("flash");
 
                 function toggleFlip() {
-                    console.log('Sí puede');
                     if (flipCardInner.style.transform === "rotateY(180deg)") {
                         flipCardInner.style.transform = "";
                         overlay.classList.add("hidden");
@@ -123,42 +122,30 @@
                         barHeight: 2,
                         barRadius: 4,
                     });
-
-                    // Variable para rastrear el estado del reproductor de audio
                     let isPlaying = false;
 
-                    // Función para cambiar el estado de reproducción del audio y el SVG del botón de reproducción
                     function togglePlay() {
                         if (isPlaying) {
                             wavesurfer.pause();
-                            // Cambiar el SVG del botón de reproducción a play
                             playBtn.innerHTML = `
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer">
                                     <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
                                 </svg>`;
                         } else {
                             wavesurfer.play();
-                            // Cambiar el SVG del botón de reproducción a pause
                             playBtn.innerHTML = `
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer">
                                     <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0A.75.75 0 0 1 15 4.5h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75V5.25Z" clip-rule="evenodd" />
                                 </svg>`;
                         }
-                        // Cambiar el estado del reproductor de audio
                         isPlaying = !isPlaying;
                     }
-
-                    // Asignar el evento click al botón de reproducción
                     playBtn.addEventListener('click', togglePlay);
-
-                    // Asignar el evento finish al reproductor de audio para cambiar el ícono al de play cuando la reproducción se complete
                     wavesurfer.on('finish', function() {
-                        // Cambiar el SVG del botón de reproducción a play
                         playBtn.innerHTML = `
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer">
                                 <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
                             </svg>`;
-                        // Actualizar el estado del reproductor de audio
                         isPlaying = false;
                     });
                     Livewire.on('scriptLoaded', function() {

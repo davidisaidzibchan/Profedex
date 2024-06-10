@@ -30,6 +30,22 @@
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #29002b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2e16ca;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6251d1;
+        }
     </style>
 </head>
 

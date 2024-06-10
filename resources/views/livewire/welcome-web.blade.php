@@ -80,10 +80,10 @@
                                         {{ $etiquetas[0] ?? '' }}
                                         {{ $etiquetas[1] ?? '' }}
                                     </span>
-                                    <a href="{{ route('login') }}">
+                                    <div>
                                         <img src="/img/continue.png" alt="imagen"
                                             class=" object-cover h-8 cursor-pointer">
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

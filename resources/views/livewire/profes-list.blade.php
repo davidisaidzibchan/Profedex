@@ -52,14 +52,14 @@
             <div class="text-green-500">No hay resultados</div>
         @else
             @foreach ($profesores as $index => $profesor)
-                <div id="flip-card-inner-{{ $index }}" class="flip-card group w-60 h-72 [perspective:1000px]">
-                    <div class="flip-card-inner cursor-pointer relative w-full h-full transition-all duration-500 [transform-style:preserve-3d]"
+                <div id="flip-card-inner-{{ $index }}" class="flip-card group w-60 [perspective:1000px]">
+                    <div class="flip-card-inner cursor-pointer relative w-full transition-all duration-500 [transform-style:preserve-3d]"
                         style="{{ isset($flippedCards[$index]) ? 'transform: rotateY(180deg)' : '' }}">
                         <div
-                            class="flip-card-front inset-0 border-4 overflow-hidden bg-black absolute w-full h-full [backface-visibility:hidden]">
+                            class="flip-card-front border-4 overflow-hidden bg-black relative w-full [backface-visibility:hidden]">
                             <img id="btnClic" src="{{ asset(json_decode($profesor->imagen)[0]) }}"
                                 alt="{{ asset(json_decode($profesor->imagen)[0]) }}"
-                                class="w-full h-full object-cover bg-no-repeat object-top">
+                                class="w-full h-auto object-cover bg-no-repeat object-top">
                             <div class="absolute inset-0 flex flex-col justify-between">
                                 <div class="absolute top-1/2 -left-3 flex flex-col justify-center items-center w-16">
                                     <svg wire:click="toggleFlip({{ $index }})" xmlns="http://www.w3.org/2000/svg"
@@ -83,25 +83,23 @@
                             </div>
                         </div>
                         <div
-                            class="flip-card-back flex inset-0 overflow-hidden border-4 bg-rose-800 text-white absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                            <div class="relative w-full bg-pink-800  flex flex-col justify-start items-center gap-2">
-                                <div class="p-5 h-4/5 text-base overflow-hidden"
+                            class="flip-card-back flex inset-0 overflow-hidden border-4 bg-rose-800 text-white absolute w-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                            <div class="relative w-full bg-pink-800 flex flex-col justify-start items-center gap-2">
+                                <div class="h-4/5 p-5 text-center pr-10 text-base overflow-hidden"
                                     style="overflow: hidden;
-                                display: -webkit-box;
-                                -webkit-box-orient: vertical;
-                                -webkit-line-clamp: 8;">
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 8;">
                                     {{ $profesor->descripcion }}
-                                    <div
-                                        class="absolute top-1/2 -right-3 flex flex-col justify-center items-center w-16">
-                                        <svg wire:click="toggleFlip({{ $index }})"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor"
-                                            class="w-8 h-8 stroke-white bg-sky-500 rounded-full p-1 cursor-pointer">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                                        </svg>
-
-                                    </div>
+                                </div>
+                                <div class="absolute top-1/2 -right-3 flex flex-col justify-center items-center w-16">
+                                    <svg wire:click="toggleFlip({{ $index }})"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="w-8 h-8 stroke-white bg-sky-500 rounded-full p-1 cursor-pointer">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                                    </svg>
                                 </div>
                                 <div class="flex h-1/5 md:hidden w-full justify-end">
                                     <div class="bg-sky-500 hover:bg-sky-600 active:bg-sky-400 group flex justify-center items-center gap-3 w-full h-full p-5 cursor-pointer"
@@ -132,6 +130,7 @@
                     </div>
                 </div>
             @endforeach
+
             <script>
                 function stopPropagation(event) {
                     event.stopPropagation();
@@ -141,27 +140,26 @@
     </div>
 
     @if ($selectedProfe)
-        <div class="fixed w-full h-full inset-0 bg-black/50 z-50 flex justify-center items-center px-5"
+        <div class="fixed w-full h-full inset-0 bg-black/50 z-50 flex justify-center items-center px-2"
             wire:click="cerrarprofe">
-            <div class="p-5 w-1/3 h-full overflow-hidden bg-amber-500 border-4 flex items-center gap-5"
+            <div class="w-2/5 h-full overflow-hidden bg-amber-500 border-4 flex items-center gap-5"
                 onclick="stopPropagation(event)">
-                <div class="w-1/2 flex flex-col gap-3">
-                    <h1 class="text-lg  uppercase text-center">{{ $selectedProfe->nombre }}</h1>
-                    <div class="flex h-80 w-60 flex-col items-center justify-center">
-
-                        <div class="flex h-72 w-60 flex-col items-center justify-center">
-                            <div class="group h-full w-full [perspective:1000px]">
+                <div
+                    class="w-1/2 h-full flex justify-center overflow-y-auto items-center flex-col gap-5 border-r p-2">
+                    <h1 class="text-lg uppercase text-center">{{ $selectedProfe->nombre }}</h1>
+                    <div class="flex w-44 flex-col items-center justify-center">
+                        <div class="flex w-full flex-col items-center justify-center">
+                            <div class="group w-full [perspective:1000px]">
                                 <div
-                                    class="relative h-full w-full rounded-xl border-4 bg-black shadow-xl transition-all duration-500 [backface-visibility:hidden] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                                    class="relative w-full rounded-xl border-4 bg-black shadow-xl transition-all duration-500 [backface-visibility:hidden] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                                     <img id="btnClic" src="{{ asset(json_decode($selectedProfe->imagen)[0]) }}"
                                         alt="{{ asset(json_decode($selectedProfe->imagen)[0]) }}"
-                                        class="w-full h-full object-cover bg-no-repeat rounded-xl object-top">
-
+                                        class="w-full h-auto object-cover bg-no-repeat rounded-xl object-top">
                                     <div
-                                        class="text center absolute border-4 bg-rose-800 overflow-hidden inset-0 h-full w-full rounded-xl bg-black/40 px-12 text-slate-300 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                                        class="absolute inset-0 border-4 bg-rose-800 rounded-xl bg-black/40  text-slate-300 [backface-visibility:hidden] [transform:rotateY(180deg)]">
                                         <img id="otroClic" src="{{ asset(json_decode($selectedProfe->imagen)[1]) }}"
                                             alt="{{ asset(json_decode($selectedProfe->imagen)[1]) }}"
-                                            class="w-full h-full object-cover bg-no-repeat object-top">
+                                            class="w-full h-full object-cover bg-no-repeat rounded-xl object-top">
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +186,7 @@
                         </div>
                         <div class="font-semibold text-sm">Xp: {{ $selectedProfe->xp }}</div>
                     </div>
-                    <div class="text-sm text-center w-full">{{ $selectedProfe->descripcion }}</div>
+                    <div class="min-h-28 text-sm text-center w-full">{{ $selectedProfe->descripcion }}</div>
                     <div class="flex flex-col justify-center items-center w-full gap-1">
                         <h2 class="text-xs">Tema de entrada:</h2>
                         <div
@@ -199,7 +197,8 @@
                             </audio>
                         </div>
                     </div>
-                    <div class="flex gap-2 justify-center items-center bg-purple-700  px-2 py-2 rounded-xl w-full">
+                    <div
+                        class="flex gap-2 justify-center items-center bg-purple-700 text-xs px-2 py-2 rounded-xl w-full">
                         <div class="bg-black p-1 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="w-5 h-5 fill-purple-700">
@@ -213,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-1/2 h-full flex flex-col justify-start items-center gap-3 overflow-y-auto">
+                <div class="w-1/2 h-full flex flex-col justify-start items-center gap-3 overflow-y-auto p-2">
                     <div class="flex flex-col gap-1 justify-center items-center bg-sky-500 px-3 py-2 w-full mt-3"
                         style="box-shadow: -10px -10px rgba(255, 0, 0, 1);">
                         <div class="text-xs">Dificultad de materias:</div>
@@ -304,7 +303,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="flex gap-1 justify-center items-start bg-sky-500 px-3 py-2 rounded-xl w-full">
+                    <div class="flex gap-1 justify-center items-start bg-sky-500 px-3 py-2 w-full">
                         @php
                             $clases = json_decode($selectedProfe->clases, true);
                         @endphp
@@ -368,21 +367,20 @@
                         <div class="flex flex-wrap gap-2 justify-center items-center">
                             @for ($i = 1; $i <= 9; $i++)
                                 @php
-                                    $semestres = explode(', ', $selectedProfe->semestres);
-                                    $textClass = '';
-                                    if (in_array($i, $semestres)) {
-                                        $textClass = 'text-red-600 text-xl';
-                                    } else {
-                                        $textClass = 'text-black text-xs'; // Color de fondo para los semestres no presentes en la base de datos
-                                    }
+                                    $semestres = explode(',', $selectedProfe->semestres); // Separar los semestres en un array
+                                    $semestres = array_map('trim', $semestres); // Eliminar espacios en blanco
+                                    $textClass = in_array($i, $semestres)
+                                        ? 'text-red-600 text-lg font-semibold'
+                                        : 'text-black text-xs';
                                 @endphp
                                 <div class="{{ $textClass }}">{{ $i }}</div>
                             @endfor
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
     @endif
-
 </div>
