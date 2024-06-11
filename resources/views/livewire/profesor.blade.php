@@ -19,10 +19,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                             </svg>
-                        </div>
+                        </div> 
                     </div>
                     <div
-                        class="flip-card-back cursor-pointer flex inset-0 rounded-xl overflow-hidden border-4 bg-rose-800overflow-hidden text-white absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                        class="flip-card-back cursor-pointer flex inset-0 overflow-hidden border-4 bg-rose-800overflow-hidden text-white absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
                         <img id="otroClic" src="{{ asset(json_decode($profesor->imagen)[1]) }}"
                             alt="{{ asset(json_decode($profesor->imagen)[1]) }}"
                             class="w-full h-full object-cover bg-no-repeat object-top">
@@ -86,14 +86,14 @@
                             </path>
                         </g>
                     </svg>
-                    <div class="font-semibold text-sm">{{ $posicionProfesor }}/{{ $totalProfesores }}</div>
+                    <div class="font-semibold text-sm">{{ $posicionProfe !== null ? $posicionProfe : 0 }}/{{ $totalProfesores }}</div>
                 </div>
                 <div class="font-semibold text-sm">Xp: {{ $profesor->xp }}</div>
             </div>
             <div class="text-sm text-center w-full">{{ $profesor->descripcion }}</div>
             <div class="flex flex-col justify-center items-center w-full gap-1">
                 <h2 class="text-md">Tema de entrada:</h2>
-                <div class="flex flex-col gap-1 justify-center items-center bg-white px-3 py-2 rounded-xl w-full">
+                <div class="flex flex-col gap-1 justify-center items-center bg-white px-3 py-2  w-full">
                     <div class="text-xs text-center">{{ basename($profesor->tema) }}</div>
                     <div class="w-full flex justify-center items-center gap-3">
                         <div class="w-1/12 text-center">
@@ -159,7 +159,7 @@
                 <div class="text-xs">Dificultad de clases: {{ $profesor->dificultad }}</div>
                 <div class="text-xs">Dificultad de evaluaciones: {{ $profesor->dificultad }}</div>
             </div>
-            <div class="flex flex-col gap-1 justify-center items-center px-3 py-2 rounded-xl w-full">
+            <div class="flex flex-col gap-1 justify-center items-center px-3 py-2  w-full">
                 <div class="text-md">Peligro de Reprobación:</div>
                 @php
                     $colorClasses = [
@@ -221,7 +221,7 @@
                     {{ $profesor->peligro }}
                 </div>
                 <div
-                    class="w-full flex justify-center items-center gap-2 rounded-xl text-md font-black text-center p-1 capitalize">
+                    class="w-full flex justify-center items-center gap-2  text-md font-black text-center p-1 capitalize">
                     @foreach ($colorClass as $bar)
                         <div class="w-3 h-6 rounded-xl border border-black {{ $bar }}"></div>
                     @endforeach
@@ -241,7 +241,7 @@
                         @else
                             @foreach ($items as $item)
                                 <img src="{{ asset('storage/' . $item->ruta) }}" alt="item"
-                                    class="rounded-xl max-w-full" style="width: calc(100% / 4 - 4px)">
+                                    class=" max-w-full" style="width: calc(100% / 4 - 4px)">
                             @endforeach
                         @endif
                     </div>
@@ -272,7 +272,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="flex flex-col gap-5 justify-center items-center  px-3 py-2 rounded-xl w-full">
+            <div class="flex flex-col gap-5 justify-center items-center  px-3 py-2  w-full">
                 <div class="text-md">Tipo</div>
                 <div class="text-xs w-full gap-3 flex flex-wrap items-center justify-center">
                     @php
@@ -283,7 +283,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="flex flex-col gap-1 justify-center items-center bg-sky-500 px-3 py-2 rounded-xl w-full">
+            <div class="flex flex-col gap-1 justify-center items-center bg-sky-500 px-3 py-2  w-full">
                 @php
                     $clases = json_decode($profesor->clases, true);
                 @endphp
@@ -301,7 +301,7 @@
                 @endforeach
             </div>
 
-            <div class="flex gap-1 justify-center items-start bg-sky-500 px-3 py-2 rounded-xl w-full">
+            <div class="flex gap-1 justify-center items-start bg-sky-500 px-3 py-2  w-full">
                 <div class="w-2/5 flex flex-col gap-4">
                     <div>
                         <div class="text-sm text-center p-1 text-white">Horario:</div>
@@ -331,21 +331,19 @@
                 <div class="text-sm text-center p-1">Suele encontrarse en los semestres:</div>
                 <div class="flex flex-wrap gap-2 justify-center items-center">
                     @for ($i = 1; $i <= 9; $i++)
-                        @php
-                            $semestres = explode(', ', $profesor->semestres);
-                            $textClass = '';
-                            if (in_array($i, $semestres)) {
-                                $textClass = 'text-red-600 text-xl';
-                            } else {
-                                $textClass = 'text-black text-xs'; // Color de fondo para los semestres no presentes en la base de datos
-                            }
-                        @endphp
-                        <div class="{{ $textClass }}">{{ $i }}</div>
-                    @endfor
+                    @php
+                        $semestres = explode(',', $profesor->semestres); // Separar los semestres en un array
+                        $semestres = array_map('trim', $semestres); // Eliminar espacios en blanco
+                        $textClass = in_array($i, $semestres)
+                            ? 'text-red-600 text-lg font-semibold'
+                            : 'text-black text-xs';
+                    @endphp
+                    <div class="{{ $textClass }}">{{ $i }}</div>
+                @endfor
                 </div>
             </div>
 
-            <div class="flex gap-2 justify-center items-center bg-purple-700  px-2 py-2 rounded-xl w-full">
+            <div class="flex gap-2 justify-center items-center bg-purple-700  px-2 py-2  w-full">
                 <div class="bg-black p-1 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                         class="w-5 h-5 fill-purple-700">

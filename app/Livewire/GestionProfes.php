@@ -24,6 +24,8 @@ class GestionProfes extends Component
     public $isOpen = false;
     public $isOpenConfirmationModal = false;
 
+    public $posicion;
+
     public $tipos = ['Común', 'Poco Común', 'Raro', 'Muy Raro', 'Legendario'];
     public $tiposSeleccionados = [];
     public $paciencia = 0, $amabilidad = 0, $comprension = 0, $exigencia = 0;
@@ -43,8 +45,6 @@ class GestionProfes extends Component
             $this->tiposSeleccionados[] = $tipo;
         }
     }
-
-
     public function toggleSemestre($semestre)
     {
 
@@ -67,8 +67,6 @@ class GestionProfes extends Component
 
         $this->semestres = implode(',', $semestresArray);
     }
-
-
     public function mount($profesor = null)
     {
         if ($profesor) {
@@ -105,9 +103,9 @@ class GestionProfes extends Component
             $this->tiposSeleccionados = explode(',', $profesor->tipo);
             $this->correo = $profesor->correo;
             $this->like = $profesor->like;
+            $this->posicion = $profesor->posicion;
         }
     }
-
     public function create()
     {
         $this->resetInputFields();
@@ -154,6 +152,7 @@ class GestionProfes extends Component
         $this->like = 0;
         $this->profesor_id = null;
         $this->habilidadesArray = [];
+        $this->posicion = 0;
     }
     public function store()
     {
@@ -168,6 +167,7 @@ class GestionProfes extends Component
             'peligro' => 'required',
             'curiosidades' => 'required',
             'horario' => 'required',
+            'posicion' => 'required',
             'categoria' => 'required',
             'tiposSeleccionados' => 'required',
             'correo' => 'required',
@@ -243,6 +243,7 @@ class GestionProfes extends Component
                 'tema' => $temaPath ?? $profesor->tema,
                 'tipo' => implode(',', $this->tiposSeleccionados),
                 'correo' => $this->correo,
+                'posicion' => $this->posicion,
             ]);
         } else {
             Profesor::create([
@@ -265,6 +266,7 @@ class GestionProfes extends Component
                 'tema' => $temaPath,
                 'tipo' => implode(',', $this->tiposSeleccionados),
                 'correo' => $this->correo,
+                'posicion' => $this->posicion,
             ]);
         }
 
@@ -310,7 +312,8 @@ class GestionProfes extends Component
         $this->tiposSeleccionados = explode(',', $profesor->tipo);
         $this->correo = $profesor->correo;
         $this->like = $profesor->like;
-
+        $this->posicion = $profesor->posicion;
+        
         $this->openModal();
     }
 

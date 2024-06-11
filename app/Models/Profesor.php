@@ -9,7 +9,7 @@ class Profesor extends Model
 {
     protected $table = 'profesores';
     use HasFactory;
-    protected $fillable = ['nivel_edu', 'nombre', 'descripcion', 'kills', 'xp', 'dificultad','like', 'peligro', 'atributos', 'curiosidades', 'horario', 'categoria', 'habilidades', 'semestres','clases','imagen','tema', 'tipo', 'correo'];
+    protected $fillable = ['nivel_edu', 'nombre', 'descripcion', 'kills', 'xp', 'dificultad','like', 'peligro', 'atributos', 'curiosidades', 'horario', 'categoria', 'habilidades', 'semestres','clases','imagen','tema', 'tipo', 'correo', 'posicion'];
 
     public function materias()
     {

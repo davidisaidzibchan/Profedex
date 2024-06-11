@@ -132,7 +132,7 @@ class ProfesList extends Component
     public function mostrarProfe($id)
     {
         $profe = Profesor::find($id);
-        $this->posicionProfe = Profesor::where('id', $id)->pluck('id')->search($id);
+        $this->posicionProfe = Profesor::where('id', $id)->value('posicion');
         $this->atributos = $profe->getAtributosAsArray();
         $this->selectedProfe = $profe;
         $this->items = Item::where('id_profesor', $profe->id)->get();

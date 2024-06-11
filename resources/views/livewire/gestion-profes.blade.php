@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-4 flex gap-2">
-                                        <div class="w-1/2">
+                                        <div class="w-1/3">
                                             <label for="kills" class="block text-gray-700">Kills:</label>
                                             <input type="number" id="kills" wire:model="kills"
                                                 class="w-full px-2 py-1 border rounded-lg">
@@ -89,11 +89,19 @@
                                                 <span class="text-red-500">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="w-1/2">
+                                        <div class="w-1/3">
                                             <label for="xp" class="block text-gray-700">XP:</label>
                                             <input type="number" id="xp" wire:model="xp"
                                                 class="w-full px-2 py-1 border rounded-lg">
                                             @error('xp')
+                                                <span class="text-red-500">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="w-1/3">
+                                            <label for="posicion" class="block text-gray-700">numero de carta:</label>
+                                            <input type="number" id="posicion" wire:model="posicion"
+                                                class="w-full px-2 py-1 border rounded-lg">
+                                            @error('posicion')
                                                 <span class="text-red-500">{{ $message }}</span>
                                             @enderror
                                         </div>

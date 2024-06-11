@@ -13,6 +13,10 @@ class Profesor extends Component
 
     public $items;
 
+    public $totalProfesores;
+
+    public $posicionProfe;
+    public $atributos;
     public function mount($id)
     {
         $this->profesor = ModelsProfesor::find($id);
@@ -20,14 +24,10 @@ class Profesor extends Component
     }
     public function render()
     {
-        $totalProfesores = ModelsProfesor::count();
-        $posicionProfesor = ModelsProfesor::where('id', '<=', $this->profesor->id)->count();
-        $atributos = $this->profesor->getAtributosAsArray();
+        $this->totalProfesores = ModelsProfesor::count();
+        $this->posicionProfe = ModelsProfesor::where('id', $this->profesor->id)->value('posicion');
+        $this->atributos = $this->profesor->getAtributosAsArray();
         $this->items = Item::where('id_profesor', $this->profesor->id)->get();
-        return view('livewire.profesor', [
-            'totalProfesores' => $totalProfesores,
-            'posicionProfesor' => $posicionProfesor,
-            'atributos' => $atributos,
-        ]);
+        return view('livewire.profesor');
     }
 }

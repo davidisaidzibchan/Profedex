@@ -144,22 +144,21 @@
             wire:click="cerrarprofe">
             <div class="w-2/5 h-full overflow-hidden bg-amber-500 border-4 flex items-center gap-5"
                 onclick="stopPropagation(event)">
-                <div
-                    class="w-1/2 h-full flex justify-center overflow-y-auto items-center flex-col gap-5 border-r p-2">
+                <div class="w-1/2 h-full flex justify-center overflow-y-auto items-center flex-col gap-5 border-r p-2">
                     <h1 class="text-lg uppercase text-center">{{ $selectedProfe->nombre }}</h1>
                     <div class="flex w-44 flex-col items-center justify-center">
                         <div class="flex w-full flex-col items-center justify-center">
                             <div class="group w-full [perspective:1000px]">
                                 <div
-                                    class="relative w-full rounded-xl border-4 bg-black shadow-xl transition-all duration-500 [backface-visibility:hidden] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                                    class="relative w-full  border-4 bg-black shadow-xl transition-all duration-500 [backface-visibility:hidden] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                                     <img id="btnClic" src="{{ asset(json_decode($selectedProfe->imagen)[0]) }}"
                                         alt="{{ asset(json_decode($selectedProfe->imagen)[0]) }}"
-                                        class="w-full h-auto object-cover bg-no-repeat rounded-xl object-top">
+                                        class="w-full h-auto object-cover bg-no-repeat  object-top">
                                     <div
-                                        class="absolute inset-0 border-4 bg-rose-800 rounded-xl bg-black/40  text-slate-300 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                                        class="absolute inset-0 border-4 bg-rose-800  bg-black/40  text-slate-300 [backface-visibility:hidden] [transform:rotateY(180deg)]">
                                         <img id="otroClic" src="{{ asset(json_decode($selectedProfe->imagen)[1]) }}"
                                             alt="{{ asset(json_decode($selectedProfe->imagen)[1]) }}"
-                                            class="w-full h-full object-cover bg-no-repeat rounded-xl object-top">
+                                            class="w-full h-full object-cover bg-no-repeat  object-top">
                                     </div>
                                 </div>
                             </div>
@@ -182,23 +181,21 @@
                                     </path>
                                 </g>
                             </svg>
-                            <div class="font-semibold text-sm">{{ $posicionProfe }}/{{ $cantidadProfes }}</div>
+                            <div class="font-semibold text-sm">{{ $posicionProfe !== null ? $posicionProfe : 0 }}/{{ $cantidadProfes }}</div>
                         </div>
                         <div class="font-semibold text-sm">Xp: {{ $selectedProfe->xp }}</div>
                     </div>
                     <div class="min-h-28 text-sm text-center w-full">{{ $selectedProfe->descripcion }}</div>
                     <div class="flex flex-col justify-center items-center w-full gap-1">
                         <h2 class="text-xs">Tema de entrada:</h2>
-                        <div
-                            class="flex flex-col gap-1 justify-center items-center bg-white px-3 py-2 rounded-xl w-full">
+                        <div class="flex flex-col gap-1 justify-center items-center bg-white px-3 py-2  w-full">
                             <div class="text-xs text-center">{{ basename($selectedProfe->tema) }}</div>
-                            <audio class="w-full bg-transparent" src="{{ $selectedProfe->tema }}"
+                            <audio class="w-full bg-transparent bg-white" src="{{ $selectedProfe->tema }}"
                                 controls="controls" preload="none">
                             </audio>
                         </div>
                     </div>
-                    <div
-                        class="flex gap-2 justify-center items-center bg-purple-700 text-xs px-2 py-2 rounded-xl w-full">
+                    <div class="flex gap-2 justify-center items-center bg-purple-700 text-xs px-2 py-2  w-full">
                         <div class="bg-black p-1 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="w-5 h-5 fill-purple-700">
@@ -224,7 +221,7 @@
                         <div class="text-xs">Curiosidades:</div>
                         <div class="text-xs w-full text-center">{{ $selectedProfe->curiosidades }}</div>
                     </div>
-                    <div class="flex flex-col gap-5 justify-center items-center  px-3 py-2 rounded-xl w-full">
+                    <div class="flex flex-col gap-5 justify-center items-center  px-3 py-2  w-full">
                         <div class="text-xs">Tipo</div>
                         <div class="text-xs w-full flex gap-3 flex-wrap items-center justify-center">
                             @php
@@ -235,7 +232,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="flex flex-col gap-1 justify-center items-center px-3 py-2 rounded-xl w-full">
+                    <div class="flex flex-col gap-1 justify-center items-center px-3 py-2  w-full">
                         <div class="text-xs">Peligro de Reprobación:</div>
                         @php
                             $colorClasses = [
@@ -297,7 +294,7 @@
                             {{ $selectedProfe->peligro }}
                         </div>
                         <div
-                            class="w-full flex justify-center items-center gap-2 rounded-xl text-xs font-black text-center p-1 capitalize">
+                            class="w-full flex justify-center items-center gap-2 text-xs font-black text-center p-1 capitalize">
                             @foreach ($colorClass as $bar)
                                 <div class="w-3 h-6 rounded-xl border border-black {{ $bar }}"></div>
                             @endforeach
@@ -331,7 +328,7 @@
                                 @else
                                     @foreach ($items as $item)
                                         <img src="{{ asset('storage/' . $item->ruta) }}" alt="item"
-                                            class="rounded-xl max-w-full" style="width: calc(100% / 4 - 4px)">
+                                            class=" max-w-full" style="width: calc(100% / 4 - 4px)">
                                     @endforeach
                                 @endif
                             </div>
@@ -360,6 +357,31 @@
                                     </div>
                                 </div>
                             @endforeach
+                        </div>
+                    </div>
+                    <div class="flex gap-1 justify-center items-start bg-sky-500 px-3 py-2 w-full">
+                        <div class="w-2/5 flex flex-col gap-4">
+                            <div>
+                                <div class="text-sm text-center p-1 text-white">Horario:</div>
+                                <div class="text-xs w-full text-center">{{ $profesor->horario }}</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-center p-1 text-white">categoria:</div>
+                                <div class="text-xs w-full text-center">{{ $profesor->categoria }}</div>
+                            </div>
+                        </div>
+                        <div class="w-3/5">
+                            <div class="text-sm text-center p-1 text-white">Habilidades:</div>
+                            @php
+                                $habilidades = explode(', ', $profesor->habilidades);
+                            @endphp
+                            <div class="flex flex-col items-center">
+                                <ol class="list-disc text-xs text-left">
+                                    @foreach ($habilidades as $habilidad)
+                                        <li>{{ $habilidad }}</li>
+                                    @endforeach
+                                </ol>
+                            </div>
                         </div>
                     </div>
                     <div class="flex flex-col gap-1 justify-center items-center py-2 w-full">
